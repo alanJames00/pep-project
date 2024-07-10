@@ -1,0 +1,54 @@
+div {
+    text-align: center;
+    position: relative;
+    padding: 2%;
+  }
+  
+  #control-panel {
+    border: 5px solid #1b1c1e;
+  }
+  
+  #chessboard {
+    margin: auto;
+    padding: 0;
+  }
+  
+  img {
+    position: absolute;
+    transition: left 0.1s linear;
+  }
+  
+  input {
+    padding: 5px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    margin-left: 1em;
+  }
+  
+  input:focus {
+    border: 1px solid #11FF00;
+  }
+  
+  span {
+    color: #fff;
+  }
+  
+  button {
+    border: 1px solid white;
+    border-radius: 50%;
+    color: #111;
+    margin-left: 1em;
+  }
+  
+  button:active {
+    border: 1px solid black;
+  }
+  
+  .light {
+    background: #FFFFFF;
+  }
+  
+  .dark {
+    background: #000000;
+  }
+  
