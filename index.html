@@ -8,13 +8,16 @@
 </head>
 <body>
    <div id="control-panel">
+    <h2>N Queen Visualization</h3>
     <input type="number" id="num_sq" placeholder="no. of Queens" min="4" required>
-    <input type="number" id="size_sq" placeholder="size">
-    <button id="sol-btn" class="light">SOLVE<i class="fas fa-sync-alt"></i></button>
+    <input type="number" id="size_sq" placeholder="size" style="display:none;" >
+    <button id="sol-btn" class="light">Generate<i class="fas fa-sync-alt"></i></button>
     <button id="next-sol-btn">Next Solution<i class="fas fa-step-forward"></i></button>
     <br>
-    <span>solution number: </span>
+    <span>Solution Number: </span>
     <span id="sol-num">0</span>
+      <span>Total Solutions: </span>
+    <span id="tot-num">0</span>
 </div>
   
 <div style="position: relative;">

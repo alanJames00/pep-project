@@ -1,5 +1,7 @@
 // global vars 
-var n, s, r, pos = new Array();
+var n, s, r, pos = new Array()
+var totalSolutionsCnt = document.querySelector('#tot-num');
+totalSolutionsCnt.textContent = calculateTotalSolutions(4);
 
 function init() {
   var sb, nsb, ns, ss;
@@ -84,30 +86,23 @@ function generateChessBoard() {
   }
   
   // initialize positions array
-  // pos = pos.fill(0, 0, n);
   for(var i=0; i<n-1; i++){
     pos[i] = 0;
   }
-  // required to find 'next solution'
   pos[n-1] = -1;
   
-  // find a solution
   solve();
 
 }
 
 function solve(){
-  
-  // display loading spinner
-  // startLoad();
-  
-  // required to find the next solution
+ 
+  calculateTotalSolutions(n);
+ 
   pos[n-1]++;
   
-  // calculate the solution and store in the array
   for(var i=0; i<n; i++){
     
-    // find safe position in the current row, then move to next row
     for(var j=pos[i]; j<n; j++){
       if(isSafe(i, j)) {
         pos[i] = j;
@@ -115,10 +110,8 @@ function solve(){
       }
     }
     
-    // if entire row was unsafe, reset current row's pos to zero, continue with the next position of previous row
     if(j===n) {
       if(i==0){
-        // reset the solution counter to zero
         r.textContent = '0';
       }
       pos[i] = 0;
@@ -131,22 +124,17 @@ function solve(){
     
   }
   
-  // reposition the queens
   for(var i=0; i<n; i++){
     document.querySelector('#q' + i).style.left = pos[i]*s + 'px';
   }
   
-  // update the solution counter
   r.textContent = (r.textContent-0+1).toString(10);
   
-  // hide the loading spinner
-  // stopLoad();
   
 }
 
 function isSafe(i, j){
   
-  // any cell of the first row will always be safe
   if(i===0) return true;
   
   for(var k=i-1; k>=0; k--){
@@ -155,5 +143,40 @@ function isSafe(i, j){
   
   return true;
 }
+
+function calculateTotalSolutions(n) {
+  var positions = new Array(n).fill(-1);
+  totalSolutions = 0;
+  findSolutions(positions, 0, n);
+
+  console.log("solutions", totalSolutions);
+  totalSolutionsCnt.textContent = totalSolutions;
+
+  return totalSolutions;
+}
+
+function findSolutions(positions, row, n) {
+  if (row === n) {
+    totalSolutions++;
+    return;
+  }
+
+  for (var col = 0; col < n; col++) {
+    if (isSafePosition(positions, row, col)) {
+      positions[row] = col;
+      findSolutions(positions, row + 1, n);
+    }
+  }
+}
+
+function isSafePosition(positions, occupiedRows, col) {
+  for (var i = 0; i < occupiedRows; i++) {
+    if (positions[i] === col || positions[i] - i === col - occupiedRows || positions[i] + i === col + occupiedRows) {
+      return false;
+    }
+  }
+  return true;
+}
+
 
 init();

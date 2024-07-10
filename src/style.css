@@ -30,13 +30,13 @@ div {
   }
   
   span {
-    color: #fff;
+    color: #000;
   }
   
   button {
     border: 1px solid white;
     border-radius: 50%;
-    color: #111;
+    color: #000;
     margin-left: 1em;
   }
   
